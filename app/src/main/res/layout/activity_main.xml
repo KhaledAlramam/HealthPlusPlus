@@ -4,7 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginRegister">
+    tools:context=".MainActivity">
 
+    <at.markushi.ui.CircleButton
+        android:id="@+id/send_location"
+        android:layout_centerInParent="true"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:src="@drawable/ic_toys_red_180dp"
+        app:cb_color="@color/white"
+        app:cb_pressedRingWidth="8dip" />
 
 </RelativeLayout>
