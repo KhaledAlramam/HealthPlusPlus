@@ -5,6 +5,7 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
 
@@ -16,7 +17,7 @@ public interface DataService {
     @POST("/auth/jwt-api-token/")
     Call<User> login(@Body User user);
 
-    @GET("/disease/")
-    Call<List<Disease>> getPossibleDisease(@Query("lat") double lat, @Query("lang") double lang);
+    @GET("/disasters/")
+    Call<List<Disease>> getPossibleDisease(@Header ("token") String token,@Query("lat") double lat, @Query("lang") double lang);
 
 }

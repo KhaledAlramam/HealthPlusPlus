@@ -13,6 +13,9 @@
         android:paddingRight="24dp">
 
         <TextView
+            android:textStyle="bold"
+            android:fontFamily="cursive"
+            android:textColor="@color/white"
             android:text="@string/app_name"
             android:textSize="30sp"
             android:layout_width="wrap_content"
@@ -21,7 +24,7 @@
             android:layout_gravity="center_horizontal" />
 
 
-        <!-- Email Label -->
+        <!-- User name Label -->
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -30,7 +33,6 @@
             <EditText android:id="@+id/input_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="text"
                 android:hint="User name" />
         </android.support.design.widget.TextInputLayout>
 
@@ -62,7 +64,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="24dp"
-            android:text="No account yet? Create one"
+            android:text="No account yet? Create one!"
             android:gravity="center"
             android:textSize="16dip"/>
 

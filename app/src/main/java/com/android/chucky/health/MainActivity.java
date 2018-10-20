@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
     LocationManager locationManager;
     double latitude,longitude;
     SharedPreferences sharedPreference;
+    String token;
 
     @OnClick(R.id.send_location)
     public void getMyLocation(View view){
@@ -54,11 +55,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        sharedPreference=getSharedPreferences("myPrefs",MODE_PRIVATE);;
+        sharedPreference=getSharedPreferences("myPrefs",MODE_PRIVATE);
+        token = sharedPreference.getString("token", null);
     }
 
 
-    private void getLocation() {
+    public void getLocation() {
         if (ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission
                 (MainActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -85,19 +87,10 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(this,"Unable to Trace your location",Toast.LENGTH_SHORT).show();
                 return;
             }
-            DataService service = RetrofitInstance.getRetrofitInstance().create(DataService.class);
-            Call<List<Disease>> diseaseCall=service.getPossibleDisease(latitude,longitude);
-            diseaseCall.enqueue(new Callback<List<Disease>>() {
-                @Override
-                public void onResponse(Call<List<Disease>> call, Response<List<Disease>> response) {
-
-                }
-
-                @Override
-                public void onFailure(Call<List<Disease>> call, Throwable t) {
-                    Toast.makeText(MainActivity.this, "Sorry for interruption, but something wrong happened", Toast.LENGTH_SHORT).show();
-                }
-            });
+            Intent intent=new Intent(MainActivity.this, ExpectedDiseases.class);
+            intent.putExtra("lat",latitude);
+            intent.putExtra("lang",longitude);
+            startActivity(intent);
         }
     }
 

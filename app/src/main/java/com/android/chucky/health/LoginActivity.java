@@ -115,10 +115,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_SIGNUP) {
             if (resultCode == RESULT_OK) {
-
-                // TODO: Implement successful signup logic here
-                // By default we just finish the Activity and log them in automatically
-                this.finish();
+               Toast.makeText(LoginActivity.this,"Signed Up, You are welcome to login",Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -139,8 +136,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void onLoginFailed() {
-        Toast.makeText(getBaseContext(), "Login failed", Toast.LENGTH_LONG).show();
-
+        Toast.makeText(getBaseContext(), "Login failed, please check your connection", Toast.LENGTH_LONG).show();
         _loginButton.setEnabled(true);
     }
 
@@ -157,7 +153,7 @@ public class LoginActivity extends AppCompatActivity {
             _userNameText.setError(null);
         }
 
-        if (password.isEmpty() || password.length() < 4 || password.length() > 10) {
+        if (password.isEmpty() || password.length() < 8) {
             _passwordText.setError("between 4 and 10 alphanumeric characters");
             valid = false;
         } else {
